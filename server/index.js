@@ -16,7 +16,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}))
 
 
-app.get('/api/get', (req, res) => {
+app.get('/product/get', (req, res) => {
 
     const sqlSelect = "SELECT * FROM Producto"
     db.query(sqlSelect, (err, result) => {
@@ -24,7 +24,7 @@ app.get('/api/get', (req, res) => {
     })
 });
 
-app.post('/api/insert', (req, res) => {
+app.post('/product/insert', (req, res) => {
 
     const Nombre = req.body.Nombre;
     const Descripcion = req.body.Descripcion;
@@ -37,7 +37,7 @@ app.post('/api/insert', (req, res) => {
     })
 });
 
-app.put('/api/update/:id', (req, res) => {
+app.put('/product/update/:id', (req, res) => {
     const ProductoID = req.params.id;
     const { Nombre, Descripcion, PrecioUnitario, CantidadEnStock } = req.body;
   
