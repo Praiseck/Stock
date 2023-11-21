@@ -11,19 +11,19 @@ function App() {
   const [selectedProductId, setSelectedProductId] = useState(null); // Estado para almacenar el ID del producto seleccionado
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/get").then((response) => {
+    Axios.get("http://localhost:3001/product/get").then((response) => {
       setProductList(response.data);
     });
   }, []);
 
   const submitProduct = () => {
-    Axios.post("http://localhost:3001/api/insert", {
+    Axios.post("http://localhost:3001/product/insert", {
       Nombre: Nombre_producto,
       Descripcion: Descripcion,
       PrecioUnitario: Precio_unidad,
       CantidadEnStock: Cantidad_Stock,
     }).then(() => {
-      Axios.get("http://localhost:3001/api/get").then((response) => {
+      Axios.get("http://localhost:3001/product/get").then((response) => {
         setProductList(response.data);
       });
       setNombre_producto("");
@@ -34,13 +34,13 @@ function App() {
   };
 
   const updateProduct = () => {
-    Axios.put(`http://localhost:3001/api/update/${selectedProductId}`, {
+    Axios.put(`http://localhost:3001/product/update/${selectedProductId}`, {
       Nombre: Nombre_producto,
       Descripcion: Descripcion,
       PrecioUnitario: Precio_unidad,
       CantidadEnStock: Cantidad_Stock,
     }).then(() => {
-      Axios.get("http://localhost:3001/api/get").then((response) => {
+      Axios.get("http://localhost:3001/product/get").then((response) => {
         setProductList(response.data);
       });
       setNombre_producto("");
