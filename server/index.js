@@ -17,33 +17,40 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 
 app.get('/product/get', (req, res) => {
-
     const sqlSelect = "SELECT * FROM Producto"
     db.query(sqlSelect, (err, result) => {
         res.send(result);
     })
 });
 
+app.get('/category/get', (req, res) => {
+  const sqlSelect = "SELECT * FROM Categoria"
+  db.query(sqlSelect, (err, result) => {
+      res.send(result);
+  })
+});
+
 app.post('/product/insert', (req, res) => {
 
     const Nombre = req.body.Nombre;
+    const CategoriaID = req.body.CategoriaID;
     const Descripcion = req.body.Descripcion;
     const PrecioUnitario = req.body.PrecioUnitario;
     const CantidadEnStock = req.body.CantidadEnStock;
 
-    const sqlInsert = "INSERT INTO Producto (Nombre, Descripcion, PrecioUnitario, CantidadEnStock) VALUES (?,?,?,?);"
+    const sqlInsert = "INSERT INTO Producto (Nombre, CategoriaID, Descripcion, PrecioUnitario, CantidadEnStock) VALUES (?,?,?,?,?);"
 
-    db.query(sqlInsert, [Nombre, Descripcion, PrecioUnitario, CantidadEnStock], (err, result) => {
+    db.query(sqlInsert, [Nombre, CategoriaID, Descripcion, PrecioUnitario, CantidadEnStock], (err, result) => {
     })
 });
 
 app.put('/product/update/:id', (req, res) => {
     const ProductoID = req.params.id;
-    const { Nombre, Descripcion, PrecioUnitario, CantidadEnStock } = req.body;
+    const { Nombre, CategoriaID, Descripcion, PrecioUnitario, CantidadEnStock } = req.body;
   
-    const sqlUpdate = "UPDATE Producto SET Nombre=?, Descripcion=?, PrecioUnitario=?, CantidadEnStock=? WHERE ProductoID=?";
+    const sqlUpdate = "UPDATE Producto SET Nombre=?, CategoriaID=?, Descripcion=?, PrecioUnitario=?, CantidadEnStock=? WHERE ProductoID=?";
   
-    db.query(sqlUpdate, [Nombre, Descripcion, PrecioUnitario, CantidadEnStock, ProductoID], (err, result) => {
+    db.query(sqlUpdate, [Nombre, CategoriaID,Descripcion, PrecioUnitario, CantidadEnStock, ProductoID], (err, result) => {
       if (err) {
         res.status(500).send("Error al actualizar el producto");
       } else {
