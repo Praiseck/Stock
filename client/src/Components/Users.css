@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+   }
+   
+   .App-Users {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+   }
+   
+   .Form-Users {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(7, auto);
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+   }
+   
+   input,
+   select,
+   button {
+    width: 50%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+   }
+   
+   button {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    grid-column: 2;
+   }
+   
+   table-Users {
+    width: 100%;
+    border-collapse: collapse;
+   }
+   
+   th,
+   td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+   }
+   
+   th {
+    background-color: #f2f2f2;
+   }
+   label{
+    font-weight: bold;
+    text-align: right;
+   }

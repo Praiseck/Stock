@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Productos from "./Components/Productos";
+import Usuarios from "./Components/Users";
 import Header from "./Components/Header";
 
 function App() {
@@ -21,9 +22,11 @@ function App() {
 
       <section className="App-sidebar">
         <button onClick={() => handleMenuClick("Productos")}>Productos</button>
+        <button onClick={() => handleMenuClick("Usuarios")}>Usuarios</button>
       </section>
       <section className="App-content">
         {activeComponent === "Productos" && <Productos />}
+        {activeComponent === "Usuarios" && <Usuarios />}
       </section>
     </div>
   );
