@@ -36,6 +36,13 @@ app.get("/category/get", (req, res) => {
   });
 });
 
+app.get("/rol/get", (req, res) => {
+  const sqlSelect = "SELECT * FROM Rol";
+  db.query(sqlSelect, (err, result) => {
+    res.send(result);
+  });
+});
+
 app.post("/product/insert", (req, res) => {
   const Nombre = req.body.Nombre;
   const CategoriaID = req.body.CategoriaID;
@@ -97,7 +104,7 @@ app.put("/product/update/:id", (req, res) => {
   );
 });
 
-app.put("/products/update/:id", (req, res) => {
+app.put("/users/update/:id", (req, res) => {
   const UsuarioID = req.params.id;
   const { Nombre, Apellido, Email, Contrasena, RolID } = req.body;
 

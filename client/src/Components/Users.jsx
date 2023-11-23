@@ -41,7 +41,7 @@ const Usuarios = () =>{
     };
 
     const updateUser = () =>{
-       axios.post(`http://localhost:3001/product/update/${selectedUserId}`, {
+       axios.post(`http://localhost:3001/users/update/${selectedUserId}`, {
             Nombre: Nombre,
             Apellido: Apellido,
             Email: Email,
@@ -106,7 +106,7 @@ const Usuarios = () =>{
                     </thead>
                     <tbody>
                         {UsersList.map((user)=>{
-                            const rol = RolList.find.find((Rol) => Rol.RolID === user.RolID);
+                            const rol = RolList.find((Rol) => Rol.RolID === user.RolID);
                             return(
                                 <tr key={user.UsuarioID}>
                                     <td>{user.Nombre}</td>
