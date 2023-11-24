@@ -53,12 +53,18 @@ app.post("/product/insert", (req, res) => {
   const sqlInsert =
     "INSERT INTO Producto (Nombre, CategoriaID, Descripcion, PrecioUnitario, CantidadEnStock) VALUES (?,?,?,?,?);";
 
-  db.query(
-    sqlInsert,
-    [Nombre, CategoriaID, Descripcion, PrecioUnitario, CantidadEnStock],
-    (err, result) => {}
-  );
-});
+    db.query(
+      sqlInsert,
+      [Nombre, CategoriaID, Descripcion, PrecioUnitario, CantidadEnStock],
+      (err, result) => {
+        if (err) {
+          res.status(500).send("Error al insertar el producto");
+        } else {
+          res.status(200).send("Producto insertado exitosamente");
+        }
+      }
+    );
+  });
 
 app.post("/users/insert", (req, res) => {
   const Nombre = req.body.Nombre;
@@ -72,7 +78,13 @@ app.post("/users/insert", (req, res) => {
   db.query(
     sqlInsert,
     [Nombre, Apellido, Email, Contrasena, RolID],
-    (err, result) => {}
+    (err, result) => {
+      if (err) {
+        res.status(500).send("Error al insertar el producto");
+      } else {
+        res.status(200).send("Producto insertado exitosamente");
+      }
+    }
   );
 });
 
@@ -104,24 +116,31 @@ app.put("/product/update/:id", (req, res) => {
   );
 });
 
-app.put("/users/update/:id", (req, res) => {
-  const UsuarioID = req.params.id;
-  const { Nombre, Apellido, Email, Contrasena, RolID } = req.body;
+app.put("/users/update/:id", async (req, res) => {
+  try {
+    const UsuarioID = req.params.id;
+    const { Nombre, Apellido, Email, Contrasena, RolID } = req.body;
 
-  const sqlUpdate =
-    "UPDATE Usuario SET Nombre=?, Apellido=?, Email=?, Contrasena=?, RolID=? WHERE UsuarioID=?";
-  db.query(
-    sqlUpdate,
-    [Nombre, Apellido, Email, Contrasena, RolID, UsuarioID],
-    (err, result) => {
-      if (err) {
-        console.log("Error al actualizar el Usuario");
-      } else {
-        console.log("Usuario actualizado exitosamente");
-      }
-    }
-  );
+    const sqlUpdate =
+      "UPDATE Usuario SET Nombre=?, Apellido=?, Email=?, Contrasena=?, RolID=? WHERE UsuarioID=?";
+      db.query(sqlUpdate, [
+      Nombre,
+      Apellido,
+      Email,
+      Contrasena,
+      RolID,
+      UsuarioID,
+    ]);
+
+    console.log("Usuario actualizado exitosamente");
+    res.status(200).send("Usuario actualizado exitosamente");
+  } catch (err) {
+    console.log("Error al actualizar el Usuario: ", err);
+    res.status(500).send("Error al actualizar el Usuario");
+  }
 });
+
+
 
 app.listen(3001, () => {
   console.log("Corriendo en el puerto 3001");

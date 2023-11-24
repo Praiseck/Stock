@@ -31,12 +31,12 @@ const Productos = () => {
     }).then(() => {
       Axios.get("http://localhost:3001/product/get").then((response) => {
         setProductList(response.data);
+        setNombre_producto("");
+        setCategoriaID("");
+        setDescripcion("");
+        setPrecio_unidad("");
+        setCantidad_Stock("");
       });
-      setNombre_producto("");
-      setCategoriaID("");
-      setDescripcion("");
-      setPrecio_unidad("");
-      setCantidad_Stock("");
     });
   };
 
@@ -50,13 +50,13 @@ const Productos = () => {
     }).then(() => {
       Axios.get("http://localhost:3001/product/get").then((response) => {
         setProductList(response.data);
+        setNombre_producto("");
+        setCategoriaID("");
+        setDescripcion("");
+        setPrecio_unidad("");
+        setCantidad_Stock("");
+        setSelectedProductId(null);
       });
-      setNombre_producto("");
-      setCategoriaID("");
-      setDescripcion("");
-      setPrecio_unidad("");
-      setCantidad_Stock("");
-      setSelectedProductId(null);
     });
   };
 
