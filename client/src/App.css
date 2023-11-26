@@ -7,8 +7,11 @@
    }
    
    .App-sidebar {
+    display: flex;
+    flex-direction: column;
     grid-row: 2;
     background-color: #f5f5f5;
+    background: rgb(87, 87, 87);
     padding: 20px;
    }
    
@@ -17,16 +20,19 @@
    }
 
    .Rute-Component{
-    background-color: #150699;
+    background-color: #10028d;
     text-align: center;
     padding: 20px;
     color: white;
+    grid-column: 1;
+    grid-row: 1;
    }
    
    .Header {
     background-color: #4caf50;
+    grid-column: 2;
     padding: 20px;
-    color: white;
+    color: #10028d;
    }
 
    .Ingresar {
@@ -53,6 +59,13 @@
    .Acciones {
     display: flex;
     justify-content: space-around;
+   }
+
+   .ButSide {
+    font-size: larger;
+    font-family: cursive;
+    width: 95%;
+    background: #270c5200;
    }
 
    .Boton-Accion {

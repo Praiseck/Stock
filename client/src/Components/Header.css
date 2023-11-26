@@ -2,9 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f5f5f5;
+    background-color: #10028d;
     padding: 10px;
     font-size: 18px;
+    grid-column: 2;
+    color: white;
 }
 
 .App-header-name {
@@ -13,4 +15,8 @@
 
 .App-header-component {
     margin-right: 10px;
+}
+
+.Logout{
+    width: 100px;
 }

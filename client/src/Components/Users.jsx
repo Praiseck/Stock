@@ -5,7 +5,7 @@ import axios from "axios";
 const Usuarios = () => {
   const [UsersList, setUsersList] = useState([]);
   const [RolList, setRolList] = useState([]);
-  const [NombreU, setNombre] = useState("");
+  const [Username, setUsername] = useState("");
   const [ApellidoU, setApellido] = useState("");
   const [EmailU, setEmail] = useState("");
   const [ContrasenaU, setContrasena] = useState("");
@@ -62,7 +62,7 @@ const Usuarios = () => {
   const submitUser = () => {
     axios
       .post("http://localhost:3001/users/insert", {
-        Nombre: NombreU,
+        Nombre: Username,
         Apellido: ApellidoU,
         Email: EmailU,
         Contrasena: ContrasenaU,
@@ -71,7 +71,7 @@ const Usuarios = () => {
       .then(() => {
         axios.get("http://localhost:3001/users/get").then((response) => {
           setUsersList(response.data);
-          setNombre("");
+          setUsername("");
           setApellido("");
           setEmail("");
           setContrasena("");
@@ -87,7 +87,7 @@ const Usuarios = () => {
   const updateUser = () => {
     axios
       .put(`http://localhost:3001/users/update/${selectedUserId}`, {
-        Nombre: NombreU,
+        Nombre: Username,
         Apellido: ApellidoU,
         Email: EmailU,
         Contrasena: ContrasenaU,
@@ -96,7 +96,7 @@ const Usuarios = () => {
       .then(() => {
         axios.get("http://localhost:3001/users/get").then((response) => {
           setUsersList(response.data);
-          setNombre("");
+          setUsername("");
           setApellido("");
           setEmail("");
           setContrasena("");
@@ -113,7 +113,7 @@ const Usuarios = () => {
     console.log("Updating users:", id);
 
     const selectedUser = UsersList.find((user) => user.UsuarioID === id);
-    setNombre(selectedUser.Nombre);
+    setUsername(selectedUser.Nombre);
     setApellido(selectedUser.Apellido);
     setEmail(selectedUser.Email);
     setContrasena(selectedUser.Contrasena);
@@ -124,19 +124,19 @@ const Usuarios = () => {
   return (
     <div className="App-Users">
       <div className="Form-Users">
+        <label>Username</label>
+        <input
+          type="text"
+          id="Username"
+          name="Username"
+          value={Username}
+          onChange={({ target }) => setUsername(target.value)}
+        />
         <label>Nombre</label>
         <input
           type="text"
-          id="Name"
-          name="Name"
-          value={NombreU}
-          onChange={({ target }) => setNombre(target.value)}
-        />
-        <label>Apellido</label>
-        <input
-          type="text"
-          id="Apellido"
-          name="Apellido"
+          id="Nombre"
+          name="Nombre"
           value={ApellidoU}
           onChange={({ target }) => setApellido(target.value)}
         />
