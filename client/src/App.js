@@ -4,8 +4,8 @@ import Productos from "./Components/Productos";
 import Usuarios from "./Components/Users";
 import Header from "./Components/Header";
 import Proveedores from "./Components/Proveedores";
-import Login from "./Components/Login"; // Asegúrate de importar el componente Login aquí
-import useAuth from "./Components/useAuth"; // Importa el hook personalizado useAuth
+import Login from "./Components/Login";
+import useAuth from "./Components/useAuth";
 
 function App() {
  const [activeComponent, setActiveComponent] = useState("");

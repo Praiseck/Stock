@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Login.css';
+import '../Styles/Login.css';
 
 function Login({ onLogin }) {
  const [username, setUsername] = useState('');
@@ -20,13 +20,17 @@ function Login({ onLogin }) {
 
     try {
       const response = await axios.post('http://localhost:3001/login', { username, password });
-      console.log('Inicio de sesión exitoso:', response.data);
 
-      setUsername('');
-      setPassword('');
-
-      // Llamar a la función onLogin aquí
-      onLogin();
+      if (response.data.success) {
+        // Si el estado de success es true, inicia sesión
+        console.log('Inicio de sesión exitoso');
+        // Aquí puedes redirigir al usuario a la página principal, por ejemplo
+        onLogin();
+      } else {
+        // Si el estado de success es false, muestra un mensaje de error
+        console.log('Error al iniciar sesión:', response.data.message);
+        setError(response.data.message);
+      }
     } catch (error) {
       setError('Error al iniciar sesión. Por favor, verifica tus credenciales e inténtalo de nuevo.');
     }

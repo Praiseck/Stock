@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Productos.css";
+import "../Styles/Productos.css";
 import Axios from "axios";
 
 const Productos = () => {
